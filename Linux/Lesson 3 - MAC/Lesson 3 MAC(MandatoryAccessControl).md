@@ -4,8 +4,6 @@
 
 Helping links : https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-introduction-selinux_architecture
 
-
-
 ## LSM - Linux Secure Module
 
 **Linux Security Modules** (LSM) is a framework that allows the Linux kernel to support a variety of computer security models while avoiding favoritism toward any single security implementation.
@@ -93,7 +91,7 @@ SELinux fundamentally answers the question: "May <subject> do
 
 ## SELinux Architecture
 
-![Image of Yaktocat](/Users/pulsz/dev/ProjetPerso/personnal-guides/Linux/Lesson 3 - MAC/architecture.png)
+
 
 SELinux is driven by loadable policy rules. 
 
@@ -115,8 +113,6 @@ Both subjects and objects are labeled with a security level, which entails a sub
 Relating to our internal schedule example above, only users that have gained the confidential clearance are allowed to view documents in the confidential category. However, users who only have the confidential clearance are not allowed to view documents that require higher levels or clearance; they are allowed read access only to documents with lower levels of clearance, and write access to documents with higher levels of clearance.
 
 ![security-intro-to-mls.png](/Users/pulsz/dev/ProjetPerso/personnal-guides/Linux/Lesson 3 - MAC/security-intro-to-mls.png)
-
-
 
 The figure below shows all allowed data flows between a subject running under the 
 "Secret" security level and various objects with different security levels. In simple terms, the Bell-LaPadula model enforces two properties: *no read up* and *no write down*.
