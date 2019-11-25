@@ -28,13 +28,13 @@
 
 ---
 
-#### 1. BIOS / UEFI
+## 1. BIOS / UEFI
 
 Helping links : https://www.howtogeek.com/56958/htg-explains-how-uefi-will-replace-the-bios/
 
-BIOS (basic input/output system) is the program a PC's microprocessor uses to get the computer system started after you turn it on. It also manages data flow between the computer's operating system and attached devices.
+**BIOS** (basic input/output system) is the program a PC's microprocessor uses to get the computer system started after you turn it on. It also manages data flow between the computer's operating system and attached devices.
 
-UEFI is a more modern solution, supporting larger hard drives, faster boot times, more security features, and—conveniently—graphics and mouse cursors.
+**UEFI** is a more modern solution, supporting larger hard drives, faster boot times, more security features, and—conveniently—graphics and mouse cursors.
 
 *Why UEFI is more advanced than BIOS?*
 
@@ -58,7 +58,7 @@ UEFI is a more modern solution, supporting larger hard drives, faster boot times
 
 Both UEFI and BIOS are here to perform POST (Power On Self Test) to load the boot loader.
 
-#### 2.  GRUB / Systemdboot
+## 2.  GRUB / Systemdboot
 
 **Grub** is a bootloader. It provides a user the choice to boot one of multiple operating systems installed on a computer or select a specific kernel configuration available on a particular operating system's partitions. 
 
@@ -78,9 +78,9 @@ Both UEFI and BIOS are here to perform POST (Power On Self Test) to load the boo
   
   - Can be good in very hardened needed cases.
 
-#### 3. Kernel Command Line
+## 3. Kernel Command Line
 
-**`initrd`** is used by kernel as temporary root file system until kernel is booted 
+**initrd** is used by kernel as temporary root file system until kernel is booted 
 and the real root file system is mounted. It also contains necessary 
 drivers compiled inside, which helps it to access the hard drive 
 partitions, and other hardware. `initrd` and `initramfs` refer to two different methods of achieving this. Both are commonly used to make preparations before the real root file system can be mounted.
@@ -109,7 +109,7 @@ Steps :
 
 - The kernel then starts to detect the system’s hardware. The root file system on disk takes over from the one in memory. The boot process then starts **INIT**(SYSTEMD) and the software daemons according to the Sys Admin’s settings. 
 
-#### 4.  Init
+## 4.  Init
 
 The kernel, once it is loaded, finds **init** in sbin (**/sbin/init**) and executes it.
 
@@ -141,9 +141,9 @@ But init is nowadays replaced by systemd.
     
     - **The process management quality depends on the quality of the bash init script**
 
-#### 5.  Display / Session Manager
+## 5.  Display / Session Manager
 
-Display manager, or login manager, is typically a graphical user interface that is displayed at the end of the boot process in place of the default shell.
+**Display manager**, or **login manager**, is typically a graphical user interface that is displayed at the end of the boot process in place of the default shell.
 
 - It is started by systemd and it also starts user services in the background
 
@@ -151,7 +151,7 @@ Display manager, or login manager, is typically a graphical user interface that 
 
 ---
 
-#### Linux processes : UID / GUID ACL
+## Linux processes : UID / GUID ACL
 
 - UID (username)
 
@@ -161,11 +161,11 @@ Display manager, or login manager, is typically a graphical user interface that 
   
   - GUID used to give rights (write / read / exec ) on files
 
-#### ARM
+## ARM
 
-- is a family of reduced instruction set computing (RISC) architectures for computer processors, configured for various environments.
+**ARM** is a family of reduced instruction set computing (RISC) architectures for computer processors, configured for various environments.
 
-#### Conclusion
+## Conclusion
 
 - Linux boot is complex
 

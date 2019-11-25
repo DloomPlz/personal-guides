@@ -12,8 +12,6 @@ Is in a state that cannot be determined by the system administrator. In addition
 
 Finally, as everything is a file, the spectrum is finally quite wide. In this model, the root user bypasses all access control.
 
-To configure 
-
 #### Extended ACL (Access Control Lists)
 
 **Access-list (ACL)** is a set of rules defined for controlling the network 
@@ -62,11 +60,11 @@ With Quota, you can do **monitoring and reporting** :
 
 ### Stategy
 
-- Isolation Access restriction gives permission to users to only what they need
-  
-  - monitoring (logs action of users)
-  
-  - Analysis
+Isolation Access restriction gives permission to users to only what they need which are : 
+
+- monitoring (logs action of users)
+
+- Analysis
 
 ### Cgroup
 
