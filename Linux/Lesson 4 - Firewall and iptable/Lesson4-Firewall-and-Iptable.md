@@ -22,7 +22,7 @@ A firewall typically establishes a barrier between a trusted internal network an
 
 ### Network domain
 
-A network domain is an administrative grouping of multiple private computer networks or hosts within the same infrastructure.
+A **network domain** is an administrative grouping of multiple private computer networks or hosts within the same infrastructure.
 
 Domains can be identified using a domain name; domains which need to be accessible from the public Internet can be assigned a globally unique name within the Domain Name System (DNS). 
 
@@ -134,7 +134,7 @@ OUTPUT :
 
 ##### Iptable / nftable Throttling
 
-Throttling
+**Throttling**
 
 - Allow or restrict any service but limit it to fair usage
 

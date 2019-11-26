@@ -2,55 +2,41 @@
 
 ---
 
-Table of Content :
+Helping Links : http://sysblog.informatique.univ-paris-diderot.fr/2019/03/08/containerisation-cgroups-namespace/
 
-- Concept
+`Run task on a dedicated domain with the same performance as native OS or how to share in home made isolation.`
 
-- Various name spaces
+## Definition
 
-- HowTo
+**Namespaces** are a feature of the Linux kernel that partitions kernel resources such that one set of processes sees one set of resources while another set of processes sees a different set of resources. 
 
-- Limitations
+The feature works by having the same namespace for a set of resources and processes, but those namespaces refer to distinct resources. 
 
-Run task on a dedicated domain with the same performance as native OS or how to share in home made isolation.
+Resources may exist in multiple spaces. Examples of such resources are process IDs, hostnames, user IDs, file names, and some names associated with network access, and interprocess communication.
 
-### Recent but not that new
+Namespaces are a fundamental aspect of containers on Linux.
 
-- Plan 9 from AT&T
-  
-  - Started in mid 80's
-  
-  - Commercial launch in '95
-  
-  - Targeting embedded / small systems
+The term "namespace" is often used for a type of namespace (e.g. process ID) as well for a particular space of names.
 
-- Solaris zone
-  
-  - Commercial launch circa 2000
-  
-  - targeting mass web server hosting
+A Linux system starts out with a single namespace of each type, used by all processes. Processes can create additional namespaces and join different namespaces. 
 
-- Linux name space
-  
-  - 2002
+## Namespaces : kinda recent
 
-### Namespace concepts
+- Started in mid 80's and commercial launch in '95
 
-- behave like parallel worlds
+- Initially targeting embedded / small systems
 
-- share the same kernel
+- Linux name space in 2002
 
-- kernel keeps each world isolated
+## Namespace concepts
 
-- subsystem as layers
+Namespaces behave like parallel worlds, but share the same kernel. Although, the kernel keeps each world isolated and subsystem as layers.
 
-- used to create container services
+It is equivalent but different from virtualisation.
 
-- equivalent but different from virtualisation
+There are multiple namespaces (pid, net, mnt, uts, ipc, user) that allow to create several isolation groups. Each process belongs to a namespace of each type, and namespaces can be nested within each other. 
 
-- negligible overhead to the system
-
-### Various name spaces
+## Various name spaces
 
 ```
 - Cgroup : CLONE_NEWCGROUP - Cgroup root directory
@@ -62,51 +48,45 @@ Run task on a dedicated domain with the same performance as native OS or how to 
 - UTS : CLONE_NEWUTS - Hostname and NIS domain name
 ```
 
-### Network NS
+## Network NS
 
-- Create virtual ethernet interfaces
-  
-  - Associated with new namespace
-  
-  - link to parent by virtual bridge
+https://docs.openstack.org/neutron/pike/admin/intro-network-namespaces.html
 
-- Link parent and child name spaces
-  
-  - create a virtual cable
-  
-  - each end has dedicated name
-  
-  - child does not 'see' parent or children
+**Network Namespace** : each network namespace has its own network stack, iptables rules, routing tables, firewall rules, and network devices. 
 
-- Software bridge
-  
-  - parent creates a software bridge
-  
-  - act as virtual internal switch
+So, you can apply different security to flows with the same IP addressing in different namespaces, as well as different routing.
 
-### User & Group NS
+Any given Linux process runs in a particular network namespace. 
 
-- Cloning root user
-  
-  - UID 0 has special privilege in its own name space
+By default this is inherited from its parent process, but a process with the right capabilities can switch itself into a different namespace.
+
+Virtual ethernet interfaces are associated with new namespace, linked to parent by a virtual bridge. The child namespace does not 'see' parent or other children.
+
+## User & Group NS
+
+**User Namespace** allows to isolate, for security, identifiers and attributes, in particular user IDs and group IDs, root directory, keys and capabilities. 
+
+The user ID and group ID of a process can be different inside and outside in user namespace. A process therefore has different rights depending on the namespace.
+
+- UID 0 has special privilege in its own name space
 
 - Mapping
   
   - UID 0 maps as a normal user in parent name space
   
-  - each name hast its own UID 0
+  - each namespace has its own UID 0
   
   - Parent name space see all child UID
   
   - No cross visibility between child name spaces
 
-### Process ID NS
+## Process ID NS
 
-- Cloning PID
-  
-  - Init as always PID 1
-  
-  - Run with all privileges
+**Pid Namespace** allows to isolate the ID number space, implying that processes in different PID namespaces may have the same PID. Each process has its own identifier, starting at 1, if process number 1 ends, all the namespace is killed. These namespaces can be nested, so a process will have multiple PIDs, one for each namespace in which it is nested. 
+
+Example : 
+
+- Init has always PID 1 and run with all privileges
 
 - Mapping
   
@@ -118,13 +98,9 @@ Run task on a dedicated domain with the same performance as native OS or how to 
   
   - No cross visibility between children name space
 
-### Mount NS
+## Mount NS
 
-Cloning mount point
-
-- Similar to chroot
-
-- DAC are mapped with local UID/GID
+**Mount Namespace** provides isolation of the list of mount points seen by the running processes from their `mnt` namespace. Each process will therefore see directory trees specific to their namespaces. It is possible to attach a process to its filesystem by the chroot control for example.
 
 Mapping
 
@@ -140,8 +116,6 @@ Mapping
   
   - Shared / private / slave / unbindable
   
-  - Help : https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt
-  
   - Warning : propagation rules require detailed attention
   
   - A **shared** mount can be replicated to as many mountpoints and all the
@@ -155,17 +129,21 @@ Mapping
     
     A **unbindable** mount is a unbindable private mount
 
-### Cgroup and MAC NS
+## Cgroup and MAC NS
 
-### Other NS
+Basically there are a few new Linux kernel features (“namespaces” and “cgroups”) that let you isolate processes from each other. When you use those features, you call it “containers”.
 
-### How to use it
+Basically these features let you pretend you have something like a virtual machine, except it’s not a virtual machine at all, it’s just processes running in the same Linux kernel.
 
-### Examples
+## Summary
 
-### Summary
+- in a **pid** namespace you become PID 1 and then your children are other processes. All the other programs are gone
+- in a **networking namespace** you can run programs on any port you want without it conflicting with what’s already running
+- in a **mount namespace** you can mount and unmount 
+  filesystems without it affecting the host filesystem. So you can have a 
+  totally different set of devices mounted (usually less)
 
-### Homework
+## Homework
 
 - Container
   
@@ -239,15 +217,13 @@ drwxr-xr-x.  2 root root     4096 25 nov.  01:13 alternatives
 
 ---
 
-### Q&A on NameSpaces
+## Quizz
 
-## How does one use namespaces  ?
+#### How does one use namespaces  ?
 
 - You can either write you own code, 
 
-- or **use container soft**, for example : `lxc`, `docker`, `openstack`
-
-- `systemd`
+- or **use container soft**, for example : `lxc`, `docker`, `openstack`,`systemd`
 
 Openstack : 
 
@@ -263,13 +239,13 @@ Pain to do, so we created Kubernecles, which is an orchestrator that organizes t
 
 `AWS` does exactly the same thing but is not open-source. It proposes an interface to run easily virtual machines and orchestrate the job. It is worldwide most used technology to do this job.
 
-## Can you run different distributions on a namespace and what is the hard limit of namespaces?
+#### Can you run different distributions on a namespace and what is the hard limit of namespaces?
 
 You can run `centos` on top of a `debian` for example,  **but it will have the same kernel !** You can share RAM, etc, but it will be using the same kernel.
 
 Fact : Kernel API is very stable.
 
-## Give 3 example of namespaces and give their specifications
+#### Give 3 example of namespaces and give their specifications
 
 - `pid` provides isolation between processes. You should not be able to run twice the same piece of code, and this allows you to fake stuff so you can redo things you should not be able to do twice.
 - `mnt` namespaces are purely based on isolation
@@ -277,7 +253,7 @@ Fact : Kernel API is very stable.
 
 Notes : MAC rules comes from the kernel, so running MAC rules on embedded is quite complex. You have to change the MAC rules on the embedded system. 
 
-## What is the principle of a namespace and why was it invented?
+#### What is the principle of a namespace and why was it invented?
 
 Created for provide a light way of partition and isolate stuff. 
 
@@ -287,7 +263,7 @@ Is it extremely fast, and have a negligible overhead. The overhead doesn't incre
 
 BUT it is a software provided isolation. (!= VM that provides isolation trough hardware) 
 
-# LXC
+#### LXC
 
 ----
 
@@ -320,7 +296,7 @@ ETH1 provides access to an interface to configure the microship MAC's addr and s
 
 ---
 
-## Difference between namespace and a VM ? What are the consequences ?
+#### Difference between namespace and a VM ? What are the consequences ?
 
 - Virtual machines does not share kernel and is a hardware feature.
   
@@ -328,7 +304,7 @@ ETH1 provides access to an interface to configure the microship MAC's addr and s
 
 - From namespace you can expose host
 
-### Can i use a namespace to create a fool software as a VM ?What are the consequences ?
+#### Can i use a namespace to create a fool software as a VM ?What are the consequences ?
 
 - Run the same Kernel
 
