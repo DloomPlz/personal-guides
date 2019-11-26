@@ -2,7 +2,7 @@
 
 ---
 
-Definitions : 
+## Definitions :
 
 **Virtualisation** is a process of running a virtual instance of a computer system in a layer abstracted from the actual hardware.
 
@@ -34,7 +34,7 @@ Definitions :
 
 - A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
 
-### The concept
+## The concept
 
 - OS virtualisation started by IBM in the 60’
   
@@ -56,7 +56,7 @@ Definitions :
 
 ---
 
-##### Concept of virtualisation
+## Concept of virtualisation
 
 - Run several OS on the same hardware
   
@@ -80,7 +80,7 @@ Definitions :
 
 ---
 
-### Different models and types of virtualisation
+## Different models and types of virtualisation
 
 - Models
   
@@ -102,7 +102,7 @@ Definitions :
 
 ---
 
-### Benefit & Side effects
+## Benefit & Side effects
 
 - Benefits
   
@@ -122,7 +122,7 @@ Definitions :
 
 ---
 
-### Containers
+## Containers
 
 - Light virtualisation
 
@@ -134,7 +134,7 @@ Definitions :
 
 - Common in the cloud
 
-### Containers security
+## Containers security
 
 - Isolation is good
 
@@ -146,7 +146,7 @@ Definitions :
 
 ---
 
-### Security rules
+## Security rules
 
 - Use only known safe repo
 
@@ -174,7 +174,7 @@ Definitions :
 
 ---
 
-### Troubleshooting
+## Troubleshooting
 
 - Name spaces
   
@@ -196,7 +196,7 @@ Definitions :
 
 ---
 
-### Limitations
+## Limitations
 
 - Shared kernel
   
@@ -218,7 +218,7 @@ Definitions :
 
 ---
 
-### Summary
+## Summary
 
 - VM provide great isolation by HW
 
