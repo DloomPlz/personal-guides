@@ -4,39 +4,35 @@
 
 Definitions : 
 
-- Virtualisation : process of running a virtual instance of a computer system in a layer abstracted from the actual hardware.
-  
-  - Full Virtualisation : 
-    
-    - completely simulates the underlying hardware. 
-    
-    - In this type of environment, any software capable of execution on the physical hardware can be run in the VM, and any OS supported by the underlying hardware can be run in each individual VM. 
-    
-    - Users can run multiple different guest OSes simultaneously. In full virtualization, the VM simulates enough hardware to allow an unmodified guest OS to be run in isolation.
-  
-  - ParaVirtualisation : 
-    
-    - technique that presents a software interface to the virtual machines which is similar, yet not identical to the underlying hardware–software interface.
-    
-    - The intent of the modified interface is to reduce the portion of the guest's execution time spent performing operations which are substantially more difficult to run in a virtual environment compared to a non-virtualized environment. 
-    
-    - The paravirtualization provides specially defined 'hooks' to allow the guest(s) and host to request and acknowledge these tasks, which would otherwise be executed in the virtual domain (where execution performance is worse).
+**Virtualisation** is a process of running a virtual instance of a computer system in a layer abstracted from the actual hardware.
 
-- Virtual Machine : emulation of a computer system. Virtual machines are based on computer architectures and provide functionality of a physical computer.
+**Full Virtualisation** completely simulates the underlying hardware. 
 
-- MMU : memory management unit (MMU), sometimes called paged memory management unit (PMMU), is a computer hardware unit having all memory references passed through itself, primarily performing the translation of virtual memory addresses to physical addresses.
-  
-  - An MMU effectively performs virtual memory management, handling at the same time memory protection, cache control, bus arbitration and, in simpler computer architectures (especially 8-bit systems), bank switching. 
+- In this type of environment, any software capable of execution on the physical hardware can be run in the VM, and any OS supported by the underlying hardware can be run in each individual VM. 
 
-- Docker : Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers.
-  
-  - Containers are isolated from one another and bundle their own software, libraries and configuration files; they can communicate with each other through well-defined channels.
-  
-  - All containers are run by a single operating-system kernel and are thus more lightweight than virtual machines.
+- Users can run multiple different guest OSes simultaneously. In full virtualization, the VM simulates enough hardware to allow an unmodified guest OS to be run in isolation.
 
-- Container : standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. 
-  
-  - A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
+**ParaVirtualisation** is a technique that presents a software interface to the virtual machines which is similar, yet not identical to the underlying hardware–software interface.
+
+- The intent of the modified interface is to reduce the portion of the guest's execution time spent performing operations which are substantially more difficult to run in a virtual environment compared to a non-virtualized environment. 
+
+- The paravirtualization provides specially defined 'hooks' to allow the guest(s) and host to request and acknowledge these tasks, which would otherwise be executed in the virtual domain (where execution performance is worse).
+
+**Virtual Machine** : emulation of a computer system. Virtual machines are based on computer architectures and provide functionality of a physical computer.
+
+**MMU** (memory management unit), sometimes called paged memory management unit (PMMU), is a computer hardware unit having all memory references passed through itself, primarily performing the translation of virtual memory addresses to physical addresses.
+
+- An MMU effectively performs virtual memory management, handling at the same time memory protection, cache control, bus arbitration and, in simpler computer architectures (especially 8-bit systems), bank switching. 
+
+**Docker** is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers.
+
+- Containers are isolated from one another and bundle their own software, libraries and configuration files; they can communicate with each other through well-defined channels.
+
+- All containers are run by a single operating-system kernel and are thus more lightweight than virtual machines.
+
+**Container** is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. 
+
+- A Docker container image is a lightweight, standalone, executable package of software that includes everything needed to run an application: code, runtime, system tools, system libraries and settings.
 
 ### The concept
 
@@ -62,17 +58,17 @@ Definitions :
 
 ##### Concept of virtualisation
 
-- What is **MMU** ?
-
 - Run several OS on the same hardware
   
-  - Share the CPU(s)•Allocate RAM areas
+  - Share the CPU(s)
+  
+  - Allocate RAM areas
   
   - Allocate/share I/O
 
 - Enabling technologies
   
-  - Interrupt for the CPUequivalent to a time share
+  - Interrupt for the CPU equivalent to a time share
   
   - Memory protection unit (MMU) for the RAM
 
@@ -84,7 +80,7 @@ Definitions :
 
 ---
 
-### Different type of virtualisation•
+### Different models and types of virtualisation
 
 - Models
   
@@ -112,9 +108,9 @@ Definitions :
   
   - Strong isolation by Hardware 
   
-  - Snapshot
+  - Snapshots
   
-  - Replication
+  - Replications
 
 - Side effects
   
@@ -138,17 +134,13 @@ Definitions :
 
 - Common in the cloud
 
-![](/Users/pulsz/Library/Application Support/marktext/images/2019-11-25-11-09-36-image.png)
-
-![](/Users/pulsz/Library/Application Support/marktext/images/2019-11-25-11-09-27-image.png)
-
 ### Containers security
 
 - Isolation is good
 
 - Content is often unknown
 
-- Many unreliable repo
+- Many unreliable repo (don't fetch unknown/untrusted image of container)
 
 - Maintenance can quickly get out of control
 
@@ -216,7 +208,7 @@ Definitions :
   
   - Host does not control container
   
-  - Lib and utilities may carry CVEs
+  - Libraries and utilities may carry CVEs
 
 - So easy to create a mess
   

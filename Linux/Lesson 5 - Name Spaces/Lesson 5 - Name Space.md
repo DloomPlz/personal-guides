@@ -30,11 +30,11 @@ A Linux system starts out with a single namespace of each type, used by all proc
 
 ## Namespace concepts
 
-Namespaces behave like parallel worlds, but share the same kernel. Although, the kernel keeps each world isolated and subsystem as layers.
+Namespaces behave like parallel worlds, but **share the same kernel**. Although, the kernel keeps each world isolated and subsystem as layers.
 
 It is equivalent but different from virtualisation.
 
-There are multiple namespaces (pid, net, mnt, uts, ipc, user) that allow to create several isolation groups. Each process belongs to a namespace of each type, and namespaces can be nested within each other. 
+There are multiple namespaces (*pid, net, mnt, uts, ipc, user*) that allow to create several isolation groups. Each process belongs to a namespace of each type, and namespaces can be nested within each other. 
 
 ## Various name spaces
 
