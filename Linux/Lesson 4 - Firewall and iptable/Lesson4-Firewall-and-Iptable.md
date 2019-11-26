@@ -2,11 +2,15 @@
 
 ---
 
-`Control what gets in and out your system``
+Helping links :
+
+`Control what gets in and out your system`
 
 ### Definition
 
-**A Firewall ?**
+**A Firewall** is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules.
+
+A firewall typically establishes a barrier between a trusted internal network and untrusted external network, such as the Internet.
 
 - Isolation between network interfaces
 
@@ -14,15 +18,15 @@
 
 - Use to protect services from external network traffic
 
-- External can be:
-  
-  - Open Internet
-  
-  - Another Internal Network
-
 - Highly configurable and secure
 
 ### Network domain
+
+A network domain is an administrative grouping of multiple private computer networks or hosts within the same infrastructure.
+
+Domains can be identified using a domain name; domains which need to be accessible from the public Internet can be assigned a globally unique name within the Domain Name System (DNS). 
+
+<u>Could be :</u>
 
 - Internal
 
@@ -30,9 +34,15 @@
 
 - DMS (DeMilitarized Zone)
 
-- Unconfigure
+- Unconfigured
 
 ### Network Interfaces
+
+A **network interface** is a software or hardware interface between two pieces of equipment or protocol layers in a computer network.
+
+A network interface will usually have some form of network address. This may consist of a node identifier and a port number or may be a unique node ID in its own right. 
+
+<u>Could be :</u>
 
 - Ethernet Type
   
@@ -56,6 +66,22 @@
 
 ##### nftable concepts
 
+**nftables** is a subsystem of the Linux kernel providing filtering and classification of network packets/datagrams/frames (available since Linux kernel 3.13 / released January 2014).
+
+nftables is supposed to replace certain parts of `netfilter`, while keeping and reusing most of it. 
+
+Advantages over netfilter :
+
+- less code duplication
+
+- more throughput. 
+
+nftables is configured via the user-space utility `nft` while `netfilter` is configured via the utilities `iptables`, `ip6tables`, `arptables` and `ebtables` frameworks.
+
+nftables utilizes the building blocks of the Netfilter infrastructure, such as the existing hooks into the networking stack, connection tracking system, userspace queueing component, and logging subsystem. 
+
+It is composed of :
+
 - Set of rules
 
 - Applicable to any IP source
@@ -74,128 +100,123 @@
 
 ` Nftable are replacing iptable but the iptable is sticky`
 
-![nftable-concepts.png](/Users/pulsz/dev/ProjetPerso/personnal-guides/Linux/Lesson 4 - Firewall and iptable/nftable-concepts.png)
+##### Iptable Input and Output
 
-##### Iptable In
+INPUT : 
 
-- INPUT
-  
-  - Define acceptable connection
-  
-  - Allow existing connection
-  
-  - Drop on configured
+- Define acceptable connection
 
-##### Iptable Out
+- Allow existing connection
 
-- OUTPUT
-  
-  - Define open src/dest
-    
-    - ip
-    
-    - port
-    
-    - new conn
-  
-  - Allow existing conn
-    
-    - conn may be allowed by an INPUT
-  
-  - NAT or Forward
-    
-    - NAT hides the real src address
-    
-    - forward ack as a router
-    
-    - Mangling allow to change the packet content
+- Drop on configured
 
-##### Iptable nftable Throttlin
+OUTPUT :
 
-- Throttling
+- Define open source/destination
   
-  - Allow restrict any service but limit it to fair usage
+  - ip
   
-  - Simple protection against DOS
+  - port
   
-  - Safe minimal bandwidth for emergency ssh conn
+  - new connection
+
+- Allow existing connection
+  
+  - connection may be allowed by an INPUT
+
+- NAT or Forward
+  
+  - NAT hides the real source address
+  
+  - forward ack as a router
+  
+  - Mangling allow to change the packet content
+
+##### Iptable / nftable Throttling
+
+Throttling
+
+- Allow or restrict any service but limit it to fair usage
+
+- Simple protection against DOS
+
+- Safe minimal bandwidth for emergency ssh connection
 
 ### Firewall configuration
 
-- Iptable are too complex 
+Iptable are too complex 
 
-- Nftable are easier but still not obvious
-  
-  - High risk of error
-  
-  - Unmaintainable
-  
-  - Many good free tools
+Nftable are easier but still not obvious
 
-- ```textile
-  TOOLS:
-  - Firewalld (default CENTOS7)
-  - Easy Firewall (web based)
-  - Shorewall (compiles meta data)
-  ```
+- High risk of error
+
+- Unmaintainable
+
+- Many good free tools
+
+**firewalld** is a firewall management tool for Linux operating systems. 
+
+It provides firewall features by acting as a front-end for the Linux kernel's netfilter framework via the nftables userspace utility acting as an alternative to the `nft` command line program.
+
+TOOLS:
+
+- Firewalld (default CENTOS7)
+- Easy Firewall (web based)
+- Shorewall (compiles meta data)
 
 ### Troubleshooting
 
-- Traffic Generation
-  
-  - Telnet & ping can change port
-  
-  - Nmap
-    
-    - Scanner
-    
-    - Zenmap (gui version)
+Traffic Generation tools :
 
-- Traffic monitoring
-  
-  - TCPDump
-  
-  - Wireshark
-  
-  - iptop
+- `Telnet` & `ping` 
 
-#### Dedicated firewall distro
+- `Nmap`
+  
+  - Scanner
+  
+  - `Zenmap` (gui version)
 
-- OpenWRT
-  
-  - Run on PC
-  
-  - Integrated software update
-  
-  - All config as meta data
+Traffic monitoring tools :
 
-- Ipfire
+- `TCPDump`
 
-- Special hardware
-  
-  - Cisco
+- `Wireshark`
+
+- `iptop`
+
+#### Dedicated firewall distribution
+
+`OpenWRT`
+
+- Integrated software update
+
+- All configuration as meta data
+
+`Ipfire`
+
+- Special hardware for Cisco
 
 ### Summary
 
-- Iptable / nftable
-  
-  - Base for packet manipulation
-  
-  - Dangerous to config by hand
+**Iptable** / **nftable**
 
-- Firewall tool (safer)
-  
-  - Describe firewall as meta data
-  
-  - Create correct iptable
+- Base for packet manipulation
 
-- Isolation
-  
-  - Obvious at Internet entry point
-  
-  - Valuable on any connected device (includ VM / container)
-  
-  - White listing strategy shall prevail
+- Dangerous to config by hand
+
+Firewall tool (safer)
+
+- Describe firewall as meta data
+
+- Create correct iptable
+
+Isolation
+
+- Obvious at Internet entry point
+
+- Valuable on any connected device (including VMs / containers)
+
+- White listing strategy shall prevail
 
 ### Quizz
 
