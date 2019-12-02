@@ -2,13 +2,21 @@
 
 ---
 
-Helping links :
+## Quick summary
+
+A firewall is a system designed to prevent unauthorized access to or from a private network. When a user wants to protect the network passing on his Linux system, he can use a firewall to create security rules on the traffic.
+
+On a Linux system, the most common is `iptables` which is a complete firewall solution. The classic configuration is:
+
+- We block all incoming traffic by default.
+
+- We authorize on a case-by-case basis: traffic belonging or linked to already established connections and traffic to the servers (web, ssh, etc.) that we wish to make available.
 
 `Control what gets in and out your system`
 
 ### Definition
 
-**A Firewall** is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules.
+**A Network Firewall** is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules.
 
 A firewall typically establishes a barrier between a trusted internal network and untrusted external network, such as the Internet.
 
