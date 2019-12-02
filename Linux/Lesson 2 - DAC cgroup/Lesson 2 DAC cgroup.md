@@ -150,7 +150,7 @@ Control groups can be used in multiple ways:
 
 4. If you are saying that you limit the CPU to 90% to process cgroup, what does that mean ?
    
-   - Users will have 10% of CPU usage
+   - Users will have as much as they want, but the kernel guarantees that if the cgroup process requires 90%, it will have them
 
 5. What is the latest version of Linuc Kernel and when was it released ?
    
