@@ -2,6 +2,16 @@
 
 -----
 
+## Quick summary
+
+A company wants to share certain specific data (e. g. sensitive data), and wants to give access to certain types of employees.
+
+The **Linux Secure Module** (**LSM**) allows the implementation of **Mandatory Access Control** (MAC), the most common implementation are **SE Linux**, **AppArmor** and **Smack** (for embedded system).
+
+- MAC restrict the ability resource owners have to grant or deny access to resource objects in a filesystem.
+
+- MAC permissions are defined by the system administrator and enforced by the kernel, and are unable to be changed by users.
+
 Helping links : https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security-enhanced_linux/sect-security-enhanced_linux-introduction-selinux_architecture
 
 ## LSM - Linux Secure Module
