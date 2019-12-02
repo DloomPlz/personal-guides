@@ -2,7 +2,21 @@
 
 ---
 
-#### Default DAC
+## Quick summary
+
+When a Linux user wants to control access to the data in his file system (owner of the data), several solutions are possible:
+
+- Give access rights to files via `DAC` (Discretionary Access Control)
+
+- `ACL` (Acess Control Lists) allow you to create rules and set permissions by group or user
+
+- Use `disk quota` to limit the use of the file system to local users (disk space limitation).
+
+- Create `cgroups` to limit the use of resources (CPU, memory, disk I/O, network, etc.) of a set of processes per user.
+
+For the security of processes launched on the computer, `seccomp` allows to filter the system calls of a process.
+
+## Default DAC
 
 Access control under Linux is, by default, of the DAC type: `Discretionary Access Control`.
 
@@ -12,7 +26,7 @@ Is in a state that cannot be determined by the system administrator. In addition
 
 Finally, as everything is a file, the spectrum is finally quite wide. In this model, the root user bypasses all access control.
 
-#### Extended ACL (Access Control Lists)
+## Extended ACL (Access Control Lists)
 
 **Access-list (ACL)** is a set of rules defined for controlling the network 
 traffic and reducing network attack. ACLs are used to filter traffic 
@@ -30,7 +44,7 @@ network.
 - It is designed to assist with UNIX file permissions. ACL allows you to 
   give permissions for any user or group to any disk resource.
 
-### DISC Quota
+## DISC Quota
 
 - A **disk quota** is a limit set by a system administrator that restricts certain aspects of file system usage on modern operating systems. The function of using disk quotas is to allocate limited disk space in a reasonable way.
 
@@ -58,7 +72,7 @@ With Quota, you can do **monitoring and reporting** :
 
 - block (disk space)
 
-### Stategy
+## Stategy
 
 Isolation Access restriction gives permission to users to only what they need which are : 
 
@@ -66,9 +80,9 @@ Isolation Access restriction gives permission to users to only what they need wh
 
 - Analysis
 
-### Cgroup
+## Cgroup
 
-**cgroups** (abbreviated from control groups) is a Linux kernel feature that limits, accounts for, and isolates the resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes. 
+**cgroups** (abbreviated from control groups) is a Linux kernel feature that limits accounts and isolates the resource usage (CPU, memory, disk I/O, network, etc.) of a collection of processes. 
 
 A **control group** (abbreviated as cgroup) is a collection of processes that are bound by the same criteria and associated with a set of parameters or limits. These groups can be hierarchical, meaning that each group inherits limits from its parent group. The kernel provides access to multiple controllers (also called subsystems) through the cgroup interface; for example, the "memory" controller limits memory use, "cpuacct" accounts CPU usage, etc.
 
@@ -100,7 +114,7 @@ Control groups can be used in multiple ways:
   
   - Subtask amd process inherit from parent
 
-### seccomp
+## seccomp
 
 **seccomp** (short for secure computing mode) is a computer security facility in the Linux kernel.
 
@@ -118,7 +132,7 @@ Control groups can be used in multiple ways:
   
   - Valid only for well behaving applications
 
-### Quizz
+## Quizz
 
 1. Difference between the extended mandatory access and the basic mandatory access ?
 
@@ -142,7 +156,7 @@ Control groups can be used in multiple ways:
    
    - 5.3.11 (11 November 2019)
 
-### Notes
+## Notes
 
 - The group is allocated to a user at login (need to re-log)
 
@@ -155,3 +169,5 @@ Control groups can be used in multiple ways:
 - Once you allocate memory to a process, it stays the same (not dynamic)
   
   - Will kill proccesses with less value if memory is not enough
+
+Very good article by **Magnussen** : https://www.magnussen.funcmylife.fr/article_30
