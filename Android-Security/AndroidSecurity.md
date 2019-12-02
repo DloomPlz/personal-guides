@@ -30,7 +30,7 @@ As in any discussion about security, these things open you up to malware, not be
 Android was designed with security as one of its cornerstone principles.
 Without comparing it to any other platform, it does a really good job of making sure processes don't collect too much information (or use too many resources) without permission, that no app or process gets access to the system level with inadequate privileges, and that the user is generally always aware of what's happening behind the scenes.
 
-[layers-of-security](./)
+![layers-of-security](./AndroidSecurityLayers.png)
 
 Just to get installed, an app has to get through all this :
 
