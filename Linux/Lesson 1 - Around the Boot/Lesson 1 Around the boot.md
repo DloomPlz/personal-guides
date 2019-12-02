@@ -2,6 +2,10 @@
 
 ---
 
+## Quick summary
+
+When someone turns on their computer with a Linux operating system, it is said that the computer `boot`. This means that the operating system will use the computer's processor to recognize and initialize all computer components. After this initialization, it must also initialize the computer's file system and login process. This can be done via 2 ways: `initrd` configuration file or via `systemd` service.
+
 ### Sequence summary
 
 1. After a processor is reset, it executes ROM startup code.
@@ -68,7 +72,7 @@ Both UEFI and BIOS are here to perform POST (Power On Self Test) to load the boo
 
 - Plugins can be installed
 
-- Config file : `/etc/grub2.cfg`
+- Config file : `/etc/grub2/grub.cfg`
 
 **Systemdboot** is a simple UEFI boot manager which executes configured EFI images. 
 
@@ -180,3 +184,5 @@ But init is nowadays replaced by systemd.
   - Set of tools (extended ACL ..)
   
   - Systemd is very dynamic so very hazardous and dangerous
+
+Very good article of **Magnussen** : https://www.magnussen.funcmylife.fr/article_29
