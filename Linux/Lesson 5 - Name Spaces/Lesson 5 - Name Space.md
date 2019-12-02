@@ -2,7 +2,16 @@
 
 ---
 
-Helping Links : http://sysblog.informatique.univ-paris-diderot.fr/2019/03/08/containerisation-cgroups-namespace/
+## Quick summary
+
+When a user wants to isolate the global resources of the system from the different processes, he can use `namespaces`. Namespaces can be assigned to users to give them access only to what they need (workspace).
+
+- The user cannot interfere with something if he is not the same namespace
+
+- A Linux namespace is an abstraction over resources in the operating system.
+    We can think of a namespace as a box. Inside this box are these system resources.
+
+- One good thing with boxes is that you can add and remove stuff from one box and it will not affect the content of other boxes
 
 `Run task on a dedicated domain with the same performance as native OS or how to share in home made isolation.`
 
@@ -309,3 +318,9 @@ ETH1 provides access to an interface to configure the microship MAC's addr and s
 - Run the same Kernel
 
 - KERNEL API is strong
+
+## Annexes
+
+http://ifeanyi.co/posts/linux-namespaces-part-1/
+
+http://sysblog.informatique.univ-paris-diderot.fr/2019/03/08/containerisation-cgroups-namespace/
