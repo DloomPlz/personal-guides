@@ -9,6 +9,70 @@
 **Android** is a Linux based operating system it is designed primarily for touch screen mobile devices such as smart phones and tablet computers. 
 The operating system have developed a lot in last 15 years starting from black and white phones to recent smart phones or mini computers. It is one of the most widely used mobile OS.
 
+## Android base configuration
+
+**Android Studio**
+
+- IDE, based on IntelliJ IDEA
+
+- Interface construction: WYSIWYG (WhatYouSeeIsWhatYouGet)
+
+**AVD -Android Virtual Device**
+
+- simulate the environment of a mobile phone with the virtual terminal manager
+
+**SDK - Software Development Kit**
+
+- Installation of modules / libs
+
+**Gradle** manages:
+
+- Dependency management
+
+- Compilation automation
+
+- The creation of the APK
+
+- The deployment of the APK
+
+**Manifest**
+
+- Contains general information: Version of the app, SDK, theme
+
+- And permissions and configurations:
+  
+  - Activities
+  
+  - Services
+  
+  - Diffusion receiver
+  
+  - Content provider
+
+- Tags :
+  
+  - `uses-feature` : details on app speciels (ex: Camera
+  
+  - `supports-screen` : supported screen dimensions
+  
+  - `<uses-permission>` : permissions required to use the app
+  
+  - `<permission`: declaration of personal permission (access by a third party service to the app data)
+
+**Ressources** : 
+
+- dossier res
+  
+  - contain images / file xml / layout / drawable / colors / strings
+
+**Priority** :
+
+At any time the Android framework can decide to set the process to free up space or space for other applications.
+
+![prioriteProcess](./priorite.png)
+
+**Toast** : correspond to a very short and visible notifications
+
 ## Why does it need security ?
 
 It supports a large number of applications on smartphones, so there is a lot of data that can be collected and stolen by malicious programmers.
@@ -148,11 +212,31 @@ READ_EXTERNAL_STORAGE
 WRITE_EXTERNAL_STORAGE
 ```
 
+#### Intent
+
+Agreements are devices for sending messages in synchronization between applications or components, such as activities, services... 
+
+They can be used to send information or request access to certain features.
+
+Generally speaking, they can be used to:
+
+- Explicitly start an activity or service using the name of the class
+
+- Launch an activity or service for the purpose of taking action on a set of data
+
+- Announce an event that has occurred.
+
+An intention can be translated as `I want you, system, to do...`. 
+
+And it depends on the action requested and the context. They must be considered as a glue between activities that allows them to be linked to each other.
+
+An intention is thus an action associated with data.
+
 #### Broadcast receiver
 
 **WTF is this ?**
 
-A *broadcast receiver* (*receiver*) is an Android component which allows you to register for system or application events.
+A *broadcast receiver* (*receiver*) is an Android component for sending and receiving events through intents.
 All registered receivers for an event are notified by the Android runtime once this event happens.
 
 For example, applications can register for the `ACTION_BOOT_COMPLETED` system event
@@ -167,6 +251,8 @@ Alternatively to this static registration, you can also register a receiver dyna
 The implementing class for a receiver extends the BroadcastReceiver class.
 
 If the event for which the broadcast receiver has registered happens, the `onReceive()` method (its the only one) of the receiver is called by the Android system.
+
+By default, the option `android:exported` is `true` and any applications can send intent to the broadcast receiver. It needs to be set at `false`.
 
 ## What can I do to protect myself though ?
 
@@ -187,19 +273,23 @@ If you want to reverse engineer an app, you need to:
 - Get the package from an android application (APK) on the Play store via the address: https://play.google.com/store/apps?hl=fr
 
 - and https://apps.evozi.com/apk-downloader/
-
-- Once downloaded, it can be open via Android Studio menu `Profile or Debug APK`.
-
-- The opening of the package gives us access to a certain amount of information, but also files in `.dex`, in other words the classes compiled for Android as they can be for Java in `.class`. Thanks to Android Studio we can see here the code called `Smali Code`. 
-  Smali is the equivalent of an assembler language generating Bytecode for the Dalvik VM in Android
-
-- In order to be able to read the code more easily, let's transform our Smali code into Java code : https://github.com/pxb1988/dex2jar
-
-- However, they are only `.class` files, their reading will always be difficult, so in order to be able to put them back in original JAVA, let's use a suitable tool to open our jar file:
   
-  - JD-GUI (JAR decompilation graphical interface): http://jd.benow.ca/-Outil 
+  - Once downloaded, it can be open via Android Studio menu `Profile or Debug APK`.
   
-  - online (from APJ orJAR): http://www.javadecompilers.com
+  - The opening of the package gives us access to a certain amount of information, but also files in `.dex`, in other words the classes compiled for Android as they can be for Java in `.class`. Thanks to Android Studio we can see here the code called `Smali Code`. 
+    Smali is the equivalent of an assembler language generating Bytecode for the Dalvik VM in Android
+  
+  - In order to be able to read the code more easily, let's transform our Smali code into Java code : https://github.com/pxb1988/dex2jar
+  
+  - However, they are only `.class` files, their reading will always be difficult, so in order to be able to put them back in original JAVA, let's use a suitable tool to open our jar file:
+    
+    - JD-GUI (JAR decompilation graphical interface): http://jd.benow.ca/-Outil 
+    
+    - online (from APJ orJAR): http://www.javadecompilers.com
+
+- **OR YOU CAN USE `jadx` tool to directly do all these steps automatically**
+  
+  - https://github.com/skylot/jadx
 
 - The code is now available to reverse.
 
