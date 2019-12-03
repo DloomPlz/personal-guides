@@ -1,2 +1,3 @@
-# personnal-guides
-Repository of personnal guides i made for fundamental knowledges
+# personal-guides
+
+Repository of personal guides i made for fundamental knowledges
