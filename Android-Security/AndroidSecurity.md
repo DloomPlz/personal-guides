@@ -1,10 +1,10 @@
-# Androïd Security
+# Android Security
 
 02/12/19 - By Pulsz
 
 ---
 
-## What is Androïd ?
+## What is Android ?
 
 **Android** is a Linux based operating system it is designed primarily for touch screen mobile devices such as smart phones and tablet computers. 
 The operating system have developed a lot in last 15 years starting from black and white phones to recent smart phones or mini computers. It is one of the most widely used mobile OS.
@@ -21,7 +21,7 @@ However, Android is an **open system that trusts the user and his developer comm
 
 If you want, you can give a lot of permissions and even give access to deeper parts of your system, if you have a rooted phone.
 
-Androïd tries to protect you from yourself, but it allows you to have the last word on what to install and to which app permission should be granted.
+Android tries to protect you from yourself, but it allows you to have the last word on what to install and to which app permission should be granted.
 
 As in any discussion about security, these things open you up to malware, not because it's bad, but because **users are the weak link**. So when it comes to Android security, it's not so that Android is inherently uncertain, we are. Android gives us a lot of power, and with great power comes great responsibility.
 
@@ -30,15 +30,15 @@ As in any discussion about security, these things open you up to malware, not be
 Android was designed with security as one of its cornerstone principles.
 Without comparing it to any other platform, it does a really good job of making sure processes don't collect too much information (or use too many resources) without permission, that no app or process gets access to the system level with inadequate privileges, and that the user is generally always aware of what's happening behind the scenes.
 
-![layers-of-security](./AndroidSecurityLayers.png)
+![layers-of-security](./ASL.png)
 
 Just to get installed, an app has to get through all this :
 
-- Google Play or an unknown sources warning (if it's enabled on your phone);
+- Android Store or an unknown sources warning (if it's enabled on your phone);
 
 - The user confirm the installation;
 
-- Has to get past Google's "Verify Apps" security feature, which checks an APK against its own database of malware before it can be installed (more on this later);
+- Has to get past Google's "Verify Apps" security feature, which checks an APK against its own database of malware before it can be installed (more on this later); 
 
 - The app is sandboxed and restricted to the permissions granted to it;
 
@@ -99,8 +99,6 @@ applications on the device. To understand why certain permissions require manual
 
 **Only dangerous permissions require user agreement.**
 
-
-
 **Examples** of dangerous permissions :
 
 An app must publicize the permissions it requires by including  `<uses-permission` tags in the app manifest.
@@ -118,8 +116,6 @@ Or to use camera (hardware features) :
 
 If you declare `android:required="false"` for the feature, then Google Play allows your app to be installed on devices that don't have the feature. You
 then must check if the current device has the feature at runtime by calling `PackageManager.hasSystemFeature()`, and gracefully disable that feature if it's not available.
-
-
 
 *All others dangerous permissions :*
 
@@ -193,7 +189,6 @@ If you want to reverse engineer an app, you need to:
 - and https://apps.evozi.com/apk-downloader/
 
 - Once downloaded, it can be open via Android Studio menu `Profile or Debug APK`.
-  
 
 - The opening of the package gives us access to a certain amount of information, but also files in `.dex`, in other words the classes compiled for Android as they can be for Java in `.class`. Thanks to Android Studio we can see here the code called `Smali Code`. 
   Smali is the equivalent of an assembler language generating Bytecode for the Dalvik VM in Android
@@ -210,14 +205,14 @@ If you want to reverse engineer an app, you need to:
 
 ## Examples ?
 
-For examples of implementation of malicious code into androïd apps, I made two example in my github. It can be open via Androïd Studio.
+For examples of implementation of malicious code into android apps, I made two example in my github. It can be open via Android Studio.
 Links are here :
 
 - https://github.com/smolveau/Widget_Overlay
 
 - https://github.com/smolveau/SMS-Receiver
 
-## Annexes
+## Articles
 
 https://lifehacker.com/how-secure-is-android-really-1446328680
 
